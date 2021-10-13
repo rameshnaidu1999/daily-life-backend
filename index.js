@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 5050;
 //  this is url string
 const DB_url =
-  "mongodb+srv://ramesh:ramesh@cluster0.h8ctf.mongodb.net/dailylife?retryWrites=true&w=majority";
+  "mongodb+srv://ramesh:ramesh@cluster0.h8ctf.mongodb.net/dailylifeDB?retryWrites=true&w=majority";
 
 mongoose.connect(DB_url).catch((err) => {
   consol.log("Err", err);
