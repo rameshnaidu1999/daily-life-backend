@@ -39,8 +39,6 @@ const getTodosByEmail = async (req, res) => {
 };
 
 const getTodoById = async (req, res) => {
-  const id = req.params.id;
-  console.log(req.params.id);
   await TodosModel.findById(req.params.id)
     .then((result) => {
       res.status(200).json({
@@ -74,8 +72,6 @@ const createTodo = async (req, res) => {
 };
 
 const deleteTodo = async (req, res) => {
-  const { id } = req.params;
-  console.log("id", id);
   await TodosModel.findByIdAndRemove(req.params.id)
     .then((result) => {
       res.status(200).json({
@@ -93,4 +89,34 @@ const deleteTodo = async (req, res) => {
     });
 };
 
-export { createTodo, getAllTodos, getTodosByEmail, deleteTodo, getTodoById };
+const updateTodoById = async (req, res) => {
+  const { title, completed, email } = req.body;
+  await TodosModel.findByIdAndUpdate(req.params.id, {
+    title,
+    completed,
+    email,
+  })
+    .then((result) => {
+      res.status(200).json({
+        data: result,
+        msg: "updated",
+        status: 200,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        msg: "failed",
+        status: 500,
+        error: err.message,
+      });
+    });
+};
+
+export {
+  createTodo,
+  getAllTodos,
+  getTodosByEmail,
+  deleteTodo,
+  getTodoById,
+  updateTodoById,
+};

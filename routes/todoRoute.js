@@ -5,6 +5,7 @@ import {
   getAllTodos,
   getTodoById,
   getTodosByEmail,
+  updateTodoById,
 } from "../controllers/todosController.js";
 
 const router = express.Router();
@@ -18,5 +19,7 @@ router.get("/get", getTodosByEmail);
 router.delete("/delete/:id", deleteTodo);
 
 router.get("/get/:id", getTodoById);
+
+router.put("/update/:id", updateTodoById);
 
 export default router;
